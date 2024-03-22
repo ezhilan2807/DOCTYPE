@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Chat with [Your Girlfriend's Name]</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #000; /* Black background color */
+            color: #fff; /* White text color */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        .container input {
+            padding: 10px;
+            margin: 5px;
+            width: 200px;
+        }
+
+        .container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container" class="container">
+        <h1>Login to Chat</h1>
+        <input type="text" id="username" placeholder="Enter your username...">
+        <button onclick="login()">Login</button>
+        <button onclick="useGuest()">Guest</button>
+    </div>
+
+    <div id="chat-container" class="container" style="display: none;">
+        <h2>Welcome to the chat!</h2>
+        <div id="chat-messages"></div>
+    </div>
+
+    <script>
+        var username = '';
+
+        function login() {
+            username = document.getElementById("username").value.trim();
+
+            if (username !== "") {
+                // Successful login
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("chat-container").style.display = "block";
+            } else {
+                alert("Please enter a username.");
+            }
+        }
+
+        function useGuest() {
+            username = "Guest";
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("chat-container").style.display = "block";
+        }
+
+        window.onbeforeunload = function() {
+            // Clear chat messages when leaving the page
+            clearChat();
+        };
+
+        function clearChat() {
+            document.getElementById("chat-messages").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
